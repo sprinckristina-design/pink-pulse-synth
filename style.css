@@ -1,4 +1,328 @@
-:root{--bg:#12131a;--panel:#1d1f29;--dark:#0c0d14;--ink:#f2eef7;--muted:#9598aa;--pink:#ff4fa3;--lav:#ad7aff;--line:#393b4d}*{box-sizing:border-box}body{margin:0;min-width:1100px;background:#090a0f;color:var(--ink);font-family:"IBM Plex Mono","SFMono-Regular",monospace}.synth-shell{margin:28px auto;padding:34px 40px 20px;width:min(1440px,calc(100vw - 56px));border-radius:30px;background:var(--bg);box-shadow:0 22px 70px #0009}.header{display:grid;grid-template-columns:1.4fr 2.15fr .34fr .4fr .8fr;gap:28px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--line)}h1{margin:0;font-size:28px;letter-spacing:-1.5px}p,small{color:var(--muted);font-size:11px;margin:7px 0 0}.display{padding:14px 22px;border-radius:17px;background:var(--dark);display:grid;gap:4px}.display small,.panel h2,.keyboard-title b{color:var(--pink)}.display strong{font-size:25px}.display span{font-size:11px;color:var(--muted)}.readout{display:grid;gap:5px}.readout b{font-size:21px}.play,.ghost{cursor:pointer;border:0;font:700 13px inherit}.play{background:var(--pink);color:var(--dark);border-radius:16px;height:56px}.voices{display:grid;grid-template-columns:1fr 1.12fr;gap:52px;margin-top:37px}.panel{border-radius:24px;background:var(--panel);padding:22px}.panel-title{display:flex;justify-content:space-between;align-items:start;margin-bottom:22px}.panel h2{margin:0;font-size:14px}.ghost{font-size:10px;padding:9px 11px;border-radius:10px;background:var(--dark);color:var(--muted);border:1px solid var(--line)}.knob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 16px}.knob-control{text-align:center}.knob{width:70px;height:70px;margin:auto;border-radius:50%;border:1px solid var(--pink);background:radial-gradient(circle at 45% 40%,#303341,#1a1c26 58%);position:relative}.knob:after{content:"";position:absolute;left:33px;top:9px;width:3px;height:18px;border-radius:4px;background:var(--ink);transform:rotate(var(--angle)) transform-origin:1px 26px}.knob-control label{display:block;margin-top:11px;font-weight:bold;font-size:12px}.knob-control output{color:var(--muted);font-size:11px}.knob-control input{width:90px;accent-color:var(--pink);margin-top:5px}.sequencer{display:grid;grid-template-columns:repeat(8,1fr);gap:11px}.step{height:85px;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--dark);cursor:pointer}.step b{font-size:11px;color:var(--muted)}.step i{display:block;width:12px;height:12px;margin:15px auto;border-radius:50%;background:#414456}.step em{display:block;height:4px;margin-top:16px;border-radius:4px;background:#3d4051}.step.on i,.step.on em{background:var(--pink)}.step.active{box-shadow:0 0 0 2px var(--lav)}.pattern-foot{display:flex;justify-content:space-between;align-items:center;margin-top:26px;font-size:11px}.pattern-foot div{display:grid;gap:8px}.pattern-foot span{color:var(--muted)}.sync{padding:12px 17px!important;border:1px solid var(--lav);border-radius:13px;color:var(--lav)}.mixer{margin-top:32px;display:grid;grid-template-columns:180px 1fr;align-items:center}.mixer-title{font-size:12px;color:var(--muted);font-weight:bold}.mixer-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}.mix label{display:block;font-size:12px;margin-bottom:10px}.mix input{width:100%;accent-color:var(--pink)}.mix output{display:block;margin-top:9px;font-size:11px;color:var(--muted)}.keyboard-wrap{margin-top:35px}.keyboard-title{display:flex;justify-content:space-between;font-size:12px;margin-bottom:13px}.keyboard-title span{color:var(--muted);font-size:11px}.keyboard{height:160px;display:flex;padding:0 12px;border:1px solid var(--line);border-radius:20px;background:var(--dark);overflow:hidden}.key{position:relative;flex:1;border:0;border-right:1px solid #bbb8c3;background:var(--ink);color:var(--dark);cursor:pointer;border-radius:0 0 9px 9px;padding:113px 0 0;font:700 12px inherit}.key:last-child{border-right:0}.key small{display:block;color:#8e8b95;margin-top:6px}.key.pressed{background:var(--pink);transform:translateY(4px)}.black{position:absolute;width:32px;height:82px;top:0;background:var(--dark);border:1px solid var(--line);border-radius:0 0 7px 7px;z-index:2;cursor:pointer}.black.pressed{background:var(--lav)}footer{display:flex;justify-content:space-between;margin-top:18px;color:var(--muted);font-size:10px}@media(max-width:1150px){.synth-shell{width:1100px}}
+:root {
+  --bg: #12131a;
+  --panel: #1d1f29;
+  --dark: #0c0d14;
+  --ink: #f2eef7;
+  --muted: #9598aa;
+  --pink: #ff4fa3;
+  --lav: #ad7aff;
+  --line: #393b4d;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 1100px;
+  background: #090a0f;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+.synth-shell {
+  margin: 28px auto;
+  padding: 34px 40px 20px;
+  width: min(1440px, calc(100vw - 56px));
+  border-radius: 30px;
+  background: var(--bg);
+  box-shadow: 0 22px 70px #0009;
+}
+.header {
+  display: grid;
+  grid-template-columns: 1.4fr 2.15fr 0.34fr 0.4fr 0.8fr;
+  gap: 28px;
+  align-items: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -1.5px;
+}
+p,
+small {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 7px 0 0;
+}
+.display {
+  padding: 14px 22px;
+  border-radius: 17px;
+  background: var(--dark);
+  display: grid;
+  gap: 4px;
+}
+.display small,
+.panel h2,
+.keyboard-title b {
+  color: var(--pink);
+}
+.display strong {
+  font-size: 25px;
+}
+.display span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.readout {
+  display: grid;
+  gap: 5px;
+}
+.readout b {
+  font-size: 21px;
+}
+.play,
+.ghost {
+  cursor: pointer;
+  border: 0;
+  font: 700 13px inherit;
+}
+.play {
+  background: var(--pink);
+  color: var(--dark);
+  border-radius: 16px;
+  height: 56px;
+}
+.voices {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: 52px;
+  margin-top: 37px;
+}
+.panel {
+  border-radius: 24px;
+  background: var(--panel);
+  padding: 22px;
+}
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 22px;
+}
+.panel h2 {
+  margin: 0;
+  font-size: 14px;
+}
+.ghost {
+  font-size: 10px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: var(--dark);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+.knob-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 16px;
+}
+.knob-control {
+  text-align: center;
+}
+.knob {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border-radius: 50%;
+  border: 1px solid var(--pink);
+  background: radial-gradient(circle at 45% 40%, #303341, #1a1c26 58%);
+  position: relative;
+}
+.knob:after {
+  content: "";
+  position: absolute;
+  left: 33px;
+  top: 9px;
+  width: 3px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--ink);
+  transform: rotate(var(--angle));
+  transform-origin: 1px 26px;
+}
+.knob-control label {
+  display: block;
+  margin-top: 11px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.knob-control output {
+  color: var(--muted);
+  font-size: 11px;
+}
+.knob-control input {
+  width: 90px;
+  accent-color: var(--pink);
+  margin-top: 5px;
+}
+.sequencer {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 11px;
+}
+.step {
+  height: 85px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--dark);
+  cursor: pointer;
+}
+.step b {
+  font-size: 11px;
+  color: var(--muted);
+}
+.step i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 15px auto;
+  border-radius: 50%;
+  background: #414456;
+}
+.step em {
+  display: block;
+  height: 4px;
+  margin-top: 16px;
+  border-radius: 4px;
+  background: #3d4051;
+}
+.step.on i,
+.step.on em {
+  background: var(--pink);
+}
+.step.active {
+  box-shadow: 0 0 0 2px var(--lav);
+}
+.pattern-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 26px;
+  font-size: 11px;
+}
+.pattern-foot div {
+  display: grid;
+  gap: 8px;
+}
+.pattern-foot span {
+  color: var(--muted);
+}
+.sync {
+  padding: 12px 17px !important;
+  border: 1px solid var(--lav);
+  border-radius: 13px;
+  color: var(--lav);
+}
+.mixer {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+}
+.mixer-title {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: bold;
+}
+.mixer-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.mix label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.mix input {
+  width: 100%;
+  accent-color: var(--pink);
+}
+.mix output {
+  display: block;
+  margin-top: 9px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.keyboard-wrap {
+  margin-top: 35px;
+}
+.keyboard-title {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 13px;
+}
+.keyboard-title span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.keyboard {
+  height: 160px;
+  display: flex;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--dark);
+  overflow: hidden;
+}
+.key {
+  position: relative;
+  flex: 1;
+  border: 0;
+  border-right: 1px solid #bbb8c3;
+  background: var(--ink);
+  color: var(--dark);
+  cursor: pointer;
+  border-radius: 0 0 9px 9px;
+  padding: 113px 0 0;
+  font: 700 12px inherit;
+}
+.key:last-child {
+  border-right: 0;
+}
+.key small {
+  display: block;
+  color: #8e8b95;
+  margin-top: 6px;
+}
+.key.pressed {
+  background: var(--pink);
+  transform: translateY(4px);
+}
+.black {
+  position: absolute;
+  width: 32px;
+  height: 82px;
+  top: 0;
+  background: var(--dark);
+  border: 1px solid var(--line);
+  border-radius: 0 0 7px 7px;
+  z-index: 2;
+  cursor: pointer;
+}
+.black.pressed {
+  background: var(--lav);
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 10px;
+}
+@media (max-width: 1150px) {
+  .synth-shell {
+    width: 1100px;
+  }
+}
 
 /* Keyboard alignment: black keys stay attached to the white-key bed. */
-.keyboard{position:relative}.black{top:6px}
+.keyboard {
+  position: relative;
+}
+.black {
+  top: 6px;
+}
