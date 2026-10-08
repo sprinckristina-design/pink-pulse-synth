@@ -4,7 +4,7 @@
 
 ## Ссылки
 
-- Figma-макет:(https://www.figma.com/design/prfnY2AKAVd1ExLmYvzQw9/%D0%9A%D0%92-%E2%80%94-%D0%96%D0%B0%D1%80%D0%B0?node-id=7168-32891&t=qkIJfObIkaujxwfb-1)(https://www.figma.com/design/7Ex5ZzBoR1udwjgokH14PA/%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%88?node-id=1670-2347&t=7e9fEx617iyuxj1T-1)
+- Figma-макет:(https://www.figma.com/design/7Ex5ZzBoR1udwjgokH14PA/%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D0%BE%D0%B5-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%82%D0%B2%D0%BE-%D0%B4%D0%BB%D1%8F-%D0%B2%D1%88?node-id=1670-2347&t=7e9fEx617iyuxj1T-1)
 - GitHub Pages: [Открыть синтезатор](https://sprinckristina-design.github.io/pink-pulse-synth/).
 - Скринкаст: [Сринкаст1.mov](%D0%A1%D1%80%D0%B8%D0%BD%D0%BA%D0%B0%D1%81%D1%821.mov).
 
