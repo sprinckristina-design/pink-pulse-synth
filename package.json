@@ -1,0 +1,11 @@
+{
+  "name": "pink-pulse-synth",
+  "private": true,
+  "scripts": {
+    "score": "node tools/import-moonlight.mjs",
+    "test": "node tests/moonlight-browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

@@ -142,7 +142,7 @@ noteNames.forEach((n, i) => {
     const q = document.createElement("button");
     q.className = "black";
     q.style.left = `${((i + 1) / noteNames.length) * 100 - 1.25}%`;
-    q.dataset.note = n + "#";
+    q.dataset.note = sharpOf(n);
     q.onpointerdown = () => playLead(sharpOf(n), q);
     q.onpointerup = () => q.classList.remove("pressed");
     keyRoot.append(q);
@@ -216,6 +216,8 @@ function tick() {
   state.step = (state.step + 1) % 16;
 }
 function togglePlay() {
+  window.dispatchEvent(new Event("pinkpulse:stop-piano"));
+  if (state.waltz) stopWaltz();
   init();
   state.playing = !state.playing;
   const b = document.querySelector("#playButton");
@@ -244,9 +246,20 @@ document.querySelector("#randomButton").onclick = () =>
     e.classList.toggle("on", !!seq[i]);
   });
 window.addEventListener("keydown", (e) => {
-  if (e.repeat) return;
+  if (
+    e.repeat ||
+    e.ctrlKey ||
+    e.metaKey ||
+    /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)
+  )
+    return;
   const i = keyMap.indexOf(e.key.toLowerCase());
-  if (i > -1) playLead(noteNames[i], document.querySelectorAll(".key")[i]);
+  if (i > -1) {
+    const el = document.querySelector(`[data-note="${noteNames[i]}"]`);
+    if (window.pinkPulsePianoMode)
+      window.pinkPulsePianoMode.manual(midiFromName(noteNames[i]), el);
+    else playLead(noteNames[i], el);
+  }
 });
 
 // Performance preset: a short two-voice version of «Собачий вальс».
@@ -274,6 +287,7 @@ function playWaltzBass(note) {
   o.stop(t + 0.36);
 }
 function playDogWaltz() {
+  window.dispatchEvent(new Event("pinkpulse:stop-piano"));
   if (state.waltz) {
     stopWaltz();
     return;
@@ -331,3 +345,13 @@ function playDogWaltz() {
   state.waltzTimers.push(setTimeout(stopWaltz, phrase.length * 215 + 500));
 }
 document.querySelector("#waltzButton").onclick = playDogWaltz;
+
+// Shared audio context: the piano is another instrument, not a hidden recording.
+window.pinkPulseBridge = {
+  context: ctx,
+  stopOtherMusic() {
+    if (state.playing) togglePlay();
+    if (state.waltz) stopWaltz();
+  },
+  levels: () => ({ lead: state.lead, bass: state.bass, master: state.master }),
+};

@@ -12,9 +12,15 @@
         <div><h1>PINK PULSE</h1><p>TWO VOICES · ONE SESSION</p></div>
         <div class="display"><small>A + B / LIVE SET</small><strong id="trackName">Velvet Transit</strong><span id="status">ready · 124 bpm · C minor</span></div>
         <div class="readout"><small>TEMPO</small><b id="tempoValue">124</b></div>
-        <div class="readout"><small>KEY</small><b>C MIN</b></div>
+        <div class="readout"><small>KEY</small><b id="keyValue">C MIN</b></div>
         <button id="playButton" class="play">▶ PLAY SET</button>
       </header>
+      <section class="performance-bar" aria-label="Автоматическое исполнение">
+        <div><b>PIANO PERFORMANCE</b><span>Бетховен · Op. 27 № 2 · I. Adagio sostenuto · оригинальная партия</span></div>
+        <button id="moonlightButton" class="ghost moonlight-button" aria-pressed="false">☾ ЛУННАЯ СОНАТА</button>
+        <p id="moonlightStatus" role="status" aria-live="polite">Нажми — рояль сыграет первую часть целиком, клавиши покажут ноты.</p>
+        <progress id="moonlightProgress" value="0" max="1" aria-label="Ход исполнения Лунной сонаты"></progress>
+      </section>
       <section class="voices">
         <article class="panel lead-panel">
           <div class="panel-title"><div><h2>VOICE A / LEAD SYNTH</h2><p>PERFORMANCE CONTROLS</p></div><div><button id="waltzButton" class="ghost">♫ DOG WALTZ</button> <button id="holdButton" class="ghost">HOLD: OFF</button></div></div>
@@ -30,6 +36,7 @@
       <section class="keyboard-wrap"><div class="keyboard-title"><b>VOICE A / LIVE KEYBOARD</b><span>Z–M LOWER OCTAVE &nbsp;&nbsp; Q–U UPPER OCTAVE</span></div><div id="keyboard" class="keyboard" aria-label="Synth keyboard"></div></section>
       <footer><span>Click PLAY once to enable sound.</span><span>Pink Pulse · Web Audio instrument</span></footer>
     </main>
-    <script src="script.js?v=dog-waltz"></script>
+    <script src="script.js?v=moonlight-1"></script>
+    <script type="module" src="moonlight.js?v=1"></script>
   </body>
 </html>
